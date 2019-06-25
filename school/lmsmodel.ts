@@ -12,7 +12,7 @@ export class LMSModel {
     }
 
 
-    remove(subject: { id: any; }) {
+    remove(subject: { id: number; }) {
         if (this.subjects.has(subject.id)) {
             this.subjects.delete(subject.id);
         } else {
@@ -21,7 +21,7 @@ export class LMSModel {
     }
 
 
-    verify(subject: { id: any; }) {
+    verify(subject: { id: number; }) {
         if (this.subjects.has(subject.id)) {
             return true;
         }

@@ -1,9 +1,11 @@
 export class PupilsModel {
+    pupils: Map<any, any>;
+    pupil: any;
     constructor() {
         this.pupils = new Map();
     }
 
-    add(pupil) {
+    add(pupil: any) {
             if (typeof pupil == "object") {
                 let id = new Date().getUTCMilliseconds();
                 this.pupils.set(id, pupil);
@@ -13,14 +15,14 @@ export class PupilsModel {
         }
     }
 
-    read(id) {
+    read(id: number) {
         if (this.pupil.has(id)) {
             return this.pupils.get(id);
         } else {
             throw new Error('Can\'t find pupil');
         }
     }
-    update(id, upd) {
+    update(id: number, upd: any) {
         if (this.pupils.has(id)) {
             return this.pupils.set(id, upd);
         }
@@ -28,7 +30,7 @@ export class PupilsModel {
             throw new Error('Can\'t find pupil');
         }
     }
-    remove(id) {
+    remove(id: number) {
         if (this.pupils.has(id)) {
             this.pupils.delete(id);
         } else {

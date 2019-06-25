@@ -1,4 +1,4 @@
-import {SubjectsModel, LMSModel, TeachersModel, PupilsModel, GradebooksMode} from './school'
+import {SubjectsModel, LMSModel, TeachersModel, PupilsModel} from './school'
 
 const history = new SubjectsModel({
   title: 'History',

@@ -1,9 +1,10 @@
 export class TeachersModel {
+    teachers: Map<any, any>;
 
     constructor() {
         this.teachers = new Map();
     }
-    add(teacher) {
+    add(teacher: any) {
         if (typeof teacher == "object") {
             let id = new Date().getUTCMilliseconds();
             this.teachers.set(id, teacher);
@@ -12,14 +13,14 @@ export class TeachersModel {
             throw new Error('Error');
         }
     }
-    read(id) {
+    read(id: number) {
         if (this.teachers.has(id)) {
             return this.teachers.get(id);
         } else {
             throw new Error('Can\'t find teacher');
         }
     }
-    update(id, upd) {
+    update(id: number, upd: any) {
         if (this.teachers.has(id)) {
             return this.teachers.set(id, upd);
         }
@@ -27,7 +28,7 @@ export class TeachersModel {
             throw new Error('Can\'t find teacher');
         }
     }
-    remove(id) {
+    remove(id: number) {
         if (this.teachers.has(id)) {
             this.teachers.delete(id);
         } else {

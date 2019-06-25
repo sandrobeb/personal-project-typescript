@@ -1,10 +1,11 @@
 export class GroupsModel {
+    groups: Map<any, any>;
 
     constructor() {
         this.groups = new Map();
     }
 
-    add(room) {
+    add(room: number) {
         if (typeof room === "number") {
             let id = Math.random().toString(36).substr(2, 16);
             this.groups.set("id", id);
@@ -16,7 +17,7 @@ export class GroupsModel {
         }
     }
 
-    addPupil(groupId, pupil) {
+    addPupil(groupId: any, pupil: any) {
         if (this.groups.get("id") == groupId) {
             this.groups.set("pupil", pupil);
             return this.groups;
@@ -26,17 +27,17 @@ export class GroupsModel {
         }
 
     }
-    removePupil(groupId, pupil){
+    removePupil(groupId: any, pupil: any){
         if (this.groups.get("id") == groupId){
             this.groups.delete("pupil", pupil);
             return this.groups;
        }
     }
 
-    update(groupId, upd) {
+    update(groupId: any, upd: any) {
         if (this.groups.get("id") == groupId) {
-            for (gr of upd) {
-                this.groups.set(gr);
+            for (let i of upd) {
+                this.groups.set(i);
             }
         }
         else {
@@ -45,7 +46,7 @@ export class GroupsModel {
     }
 
 
-    read(groupId){
+    read(groupId: any){
             if(this.groups.get("id") == groupId){
                 return this.groups;
             }
@@ -55,7 +56,7 @@ export class GroupsModel {
     }
 
     readAll(){
-        let arr = [];
+        let arr: any[] = [];
         this.groups.forEach(data => {
             arr.push(data);
         })
