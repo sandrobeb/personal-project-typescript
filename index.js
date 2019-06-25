@@ -1,1 +1,1 @@
-require('./build/index.mjs');
+require('./build/main');

@@ -10,5 +10,8 @@ export{TeachersModel};
 import{PupilsModel} from './pupilsmodel';
 export{PupilsModel};
 
+import{GroupsModel} from './groupsmodel';
+export{GroupsModel};
+
 // import{GradebooksModel} from './gradebooksmodel';
 // export{GradebooksModel};

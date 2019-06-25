@@ -6,23 +6,20 @@ export class PupilsModel {
     }
 
     add(pupil: any) {
-            if (typeof pupil == "object") {
                 let id = new Date().getUTCMilliseconds();
+                pupil.id = id;
                 this.pupils.set(id, pupil);
-                return id;
-            } else {
-                throw new Error('Error');
-        }
+                return this.pupils.get(id);
     }
 
     read(id: number) {
-        if (this.pupil.has(id)) {
+        if (this.pupils.has(id)) {
             return this.pupils.get(id);
         } else {
             throw new Error('Can\'t find pupil');
-        }
+        } 
     }
-    update(id: number, upd: any) {
+    update(id: number, upd: object) {
         if (this.pupils.has(id)) {
             return this.pupils.set(id, upd);
         }
