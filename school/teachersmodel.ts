@@ -1,33 +1,3 @@
-// interface schema {
-//     id?: number;
-
-//     name: {
-//         first: string,
-//         last: string
-//     },
-//     image: string,
-//     dateOfBirth: string, // format date
-//     emails: email[],
-//     phones: phone[],
-//     sex: string, // male or female
-//     subjects: subject[],
-//     description: string,
-// }
-
-// interface email {
-//     email: string,
-//     primary: boolean
-// }
-
-// interface phone {
-//     phone: string,
-//     primary: boolean
-// }
-
-// interface subject {
-//     subject: string
-// }
-
 export class TeachersModel {
     teachers: Map<any, any>;
 
