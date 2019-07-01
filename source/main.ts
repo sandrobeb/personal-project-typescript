@@ -199,5 +199,3 @@ const gradebooks = new GradeBooksModel(groups, teachers, lms);
 
 const students = gradebooks.readAll(); 
 console.log(students);
-
-

@@ -6,52 +6,56 @@ interface grade {
     level: number;
     id: number;
     records: recordsSchema[];
- }
- 
- interface recordsSchema {
+}
+
+interface recordsSchema {
     pupilId?: number,
     teacherId: object,
     subjectId: number,
     lesson: number,
     mark: number
- }
- 
+}
+
 
 export class GradeBooksModel {
-   gradebook: Map<number, grade>;
-   groups: GroupsModel;
-   teachers: TeachersModel;
-   lms: LMSModel;
-   constructor(groups: GroupsModel, teachers: TeachersModel, lms: LMSModel) {
-       this.gradebook = new Map();
-       this.groups = groups;
-       this.teachers = teachers;
-       this.lms = lms;
-   }
+    gradebook: Map<number, grade>;
+    groups: GroupsModel;
+    teachers: TeachersModel;
+    lms: LMSModel;
+    constructor(groups: GroupsModel, teachers: TeachersModel, lms: LMSModel) {
+        this.gradebook = new Map();
+        this.groups = groups;
+        this.teachers = teachers;
+        this.lms = lms;
+    }
 
-   add(level: number, grId: number) {
-       
-        let id =new Date().getUTCMilliseconds();
-       this.gradebook.set(grId, { level, id, records: [] })
-       return id;
-   }
+    add(level: number, grId: number) {
 
-   clear() {
-           this.gradebook.clear();
-   }
+        let id = new Date().getUTCMilliseconds();
+        this.gradebook.set(grId, { level, id, records: [] });
+        return id;
+    }
 
-   addRecord(gradebookId: number, record: recordsSchema) {
-    const grade = this.gradebook.get(gradebookId);
-    grade.records.push(record);
-   }
+    clear() {
+        this.gradebook.clear();
+    }
 
-   read(gradebookId: number, pupilId: number) {
-       let grade = this.gradebook.get(gradebookId);
-       return grade;
-       
-   }
+    addRecord(gradebookId: number, record: recordsSchema) {
+        const grade = this.gradebook.get(gradebookId);
+        if (grade) {
+            grade.records.push(record);
+        } else {
+            throw new Error("error");
+        }
+    }
 
-    readAll(){
+    read(gradebookId: number, pupilId: number) {
+        let grade = this.gradebook.get(gradebookId);
+        return grade;
+
+    }
+
+    readAll() {
         return Array.from(this.gradebook);
     }
 }
