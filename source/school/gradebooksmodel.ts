@@ -2,22 +2,23 @@ import { LMSModel } from './lmsmodel';
 import { TeachersModel } from './teachersmodel';
 import { GroupsModel } from './groupsmodel';
 
-interface record {
-   pupilId: number,
-   teacherId: number,
-   subjectId: number,
-   lesson: number,
-   mark: number
-}
-
-interface gradebook {
+interface grade {
     level: number;
-    id: string;
-    records: record[];
+    id: number;
+    records: recordsSchema[];
  }
+ 
+ interface recordsSchema {
+    pupilId?: number,
+    teacherId: object,
+    subjectId: number,
+    lesson: number,
+    mark: number
+ }
+ 
 
 export class GradeBooksModel {
-   gradebook: Map<string, gradebook>;
+   gradebook: Map<number, grade>;
    groups: GroupsModel;
    teachers: TeachersModel;
    lms: LMSModel;
@@ -28,8 +29,9 @@ export class GradeBooksModel {
        this.lms = lms;
    }
 
-   add(level: number, grId: string) {
-        let id =Math.random().toString(36).substr(2, 8);
+   add(level: number, grId: number) {
+       
+        let id =new Date().getUTCMilliseconds();
        this.gradebook.set(grId, { level, id, records: [] })
        return id;
    }
@@ -38,16 +40,12 @@ export class GradeBooksModel {
            this.gradebook.clear();
    }
 
-   addRecord(gradebookId: string, record: record) {
-       let store = this.gradebook.get(gradebookId);
-       if (store) {
-           store.records.push(record);
-       } else {
-           throw new Error("Error!");
-       }
+   addRecord(gradebookId: number, record: recordsSchema) {
+    const grade = this.gradebook.get(gradebookId);
+    grade.records.push(record);
    }
 
-   read(gradebookId: string) {
+   read(gradebookId: number, pupilId: number) {
        let grade = this.gradebook.get(gradebookId);
        return grade;
        

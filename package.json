@@ -4,11 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "npm run lint && tsc && node .",
-    "lint": "tslint -c tslint.json 'source/**/*.ts'"
+    "start": "tsc && node ."
   },
   "devDependencies": {
-    "tslint": "^5.18.0",
     "typescript": "^3.5.2"
   }
 }

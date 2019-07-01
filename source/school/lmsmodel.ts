@@ -1,18 +1,18 @@
+interface LMSschema {
+    id: number;
+}
+
 export class LMSModel {
     subjects: any;
     constructor() {
         this.subjects = new Map();
     }
-    add(subject: { id: number; }) {
-        if (typeof subject == "object") {
+    add(subject: LMSschema ) {
             this.subjects.set(subject.id, subject)
-        } else {
-            throw new Error("It shoulde be object")
-        }
     }
 
 
-    remove(subject: { id: number; }) {
+    remove(subject: LMSschema) {
         if (this.subjects.has(subject.id)) {
             this.subjects.delete(subject.id);
         } else {

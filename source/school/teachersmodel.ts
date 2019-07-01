@@ -1,17 +1,41 @@
+interface emails {
+    email: string,
+    primary: boolean
+}
+
+interface phones {
+    phone: string,
+    primary: boolean
+}
+
+interface subjects {
+    subject: string
+}
+
+interface Teacherschema {
+    name: {
+        first: string,
+        last: string
+    },
+    image: string,
+    dateOfBirth: string,
+    emails: emails[],
+    phones: phones[],
+    sex: string,
+    subjects: subjects[],
+    description?: string,
+}
+
 export class TeachersModel {
-    teachers: Map<any, any>;
+    teachers: Map<number, Teacherschema>;
 
     constructor() {
         this.teachers = new Map();
     }
-    add(teacher: any) {
-        if (typeof teacher == "object") {
-            let id = new Date().getUTCMilliseconds();
-            this.teachers.set(id, teacher);
-            return id;
-        } else {
-            throw new Error('Error');
-        }
+    add(teacher: Teacherschema) {
+        let id = new Date().getUTCMilliseconds();
+        this.teachers.set(id, teacher);
+        return id;
     }
     read(id: number) {
         if (this.teachers.has(id)) {
@@ -20,7 +44,7 @@ export class TeachersModel {
             throw new Error('Can\'t find teacher');
         }
     }
-    update(id: number, upd: any) {
+    update(id: number, upd: Teacherschema) {
         if (this.teachers.has(id)) {
             return this.teachers.set(id, upd);
         }
